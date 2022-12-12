@@ -1,3 +1,5 @@
+# Source: https://beltoforion.de/en/recreational_mathematics/game_of_life.php
+
 import pygame
 import numpy as np
 
