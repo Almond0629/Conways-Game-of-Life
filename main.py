@@ -3,7 +3,7 @@ from constant import * #引入顏色、幀率
 import init #初始化
 import modify #修改
 import update #包含更新跟畫上格子
-from button import button
+from button import button #按鈕
 
 def main(dimx, dimy, cellsize):
     pygame.init()
