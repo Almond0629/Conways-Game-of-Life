@@ -3,7 +3,7 @@ from constant import * #引入顏色、幀率
 import init #初始化
 import modify #修改
 import update #包含更新跟畫上格子
-from menu import MainMenu
+from menu import MainMenu, Settings
 
 def main(dimx, dimy, cellsize):
     pygame.init()
@@ -15,6 +15,7 @@ def main(dimx, dimy, cellsize):
     running = 1 #暫停狀態，預設1=運行
     status = "main" #status: main(menu), run, settings，預設為起始畫面
     current_menu = MainMenu(display, surface, dimx, dimy, cellsize, col_background)
+    current_settings = Settings(display, surface, dimx, dimy, cellsize, col_background)
 
     while True:
         if status == "main":
@@ -33,6 +34,9 @@ def main(dimx, dimy, cellsize):
                 return 0
             elif not current_menu.run_display:
                 status = "run"
+        elif status == "setting":
+            #TODO
+            pass
         elif status == "run":
             for event in pygame.event.get():
                 # print(event.type)

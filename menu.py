@@ -24,7 +24,7 @@ class MainMenu(Menu): # class for the main menu
         self.y = self.h / 2
         self.title_fontsize = 60
         self.fontsize = 30
-        self.title1 = Button(self.x, self.y - 200, "Conway's", self.title_fontsize)
+        self.title1 = Button(self.x, self.y - 200, "Conway s", self.title_fontsize)
         self.title2 = Button(self.x, self.y - 100, "Game of Life", self.title_fontsize)
         self.start_button = Button(self.x, self.y + 50, 'Start', self.fontsize)
         self.settings_button = Button(self.x, self.y + 130, 'Settings', self.fontsize)
@@ -47,4 +47,16 @@ class MainMenu(Menu): # class for the main menu
             self.start_button.draw(self.display)
             self.settings_button.draw(self.display)
             self.blit_screen()
-
+class Settings(Menu):
+    def __init__(self, display, surface, dimx, dimy, cellsize, color):
+        Menu.__init__(self, display, surface, dimx, dimy, cellsize, color)
+        #TODO
+    
+    def display_menu(self): # displaying the menu
+        self.run_display = True
+        self.goto_menu = False
+        self.run_code = True
+        while self.run_display and self.run_code and not self.goto_menu:
+            #這裡要有跳到menu的按鈕把self.goto_menu設成True
+            pass
+        #TODO
