@@ -3,37 +3,36 @@ from constant import * #引入顏色、幀率
 import init #初始化
 import modify #修改
 import update #包含更新跟畫上格子
-from button import button #按鈕
+from menu import MainMenu
 
 def main(dimx, dimy, cellsize):
     pygame.init()
+    display = pygame.Surface((dimx * cellsize, dimy * cellsize))
     surface = pygame.display.set_mode((dimx * cellsize, dimy * cellsize))
     pygame.display.set_caption("Game of Life")
     cells = init.init(dimx, dimy)
     clock = pygame.time.Clock()
     running = 1 #暫停狀態，預設1=運行
     status = "main" #status: main(menu), run, settings，預設為起始畫面
-    start_button = button(0, 0, 400, 200, '#00FF00', 'start', 100) #測試用起始按鈕
-    quit_button = button(0, 200, 400, 200, '#FF0000', 'quit', 20) #測試用結束按鈕
-    
+    current_menu = MainMenu(display, surface, dimx, dimy, cellsize, col_background)
+
     while True:
         if status == "main":
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    return 0
-                elif event.type == pygame.MOUSEBUTTONDOWN:
-                    mouse_pos = pygame.mouse.get_pos()
-                    if start_button.on(mouse_pos):
-                        print("run")
-                        status = "run"
-                    elif quit_button.on(mouse_pos):
-                        pygame.quit()
-                        return 0
-            surface.fill(col_background)
-            start_button.draw(surface)
-            quit_button.draw(surface)
-            pygame.display.update()
+            if current_menu.run_display and current_menu.run_code:
+                current_menu.display_menu()
+                pygame.display.update()
+                # elif event.type == pygame.MOUSEBUTTONDOWN:
+                #     mouse_pos = pygame.mouse.get_pos()
+                #     if start_button.on(mouse_pos):
+                #         print("Running the game...")
+                #         status = "run"
+                #         current_menu.run_display = False
+                    # elif settings_button.on(mouse_pos):
+            elif not current_menu.run_code:
+                pygame.quit()
+                return 0
+            elif not current_menu.run_display:
+                status = "run"
         elif status == "run":
             for event in pygame.event.get():
                 # print(event.type)
