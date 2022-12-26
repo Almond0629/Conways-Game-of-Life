@@ -21,7 +21,7 @@ def draw(surface, nxt, dimx, dimy, cellsize):
             col = col_neighbor
         if (nxt[r, c] == 1 and 2 <= num_alive <= 3):
             col = col_alive
-        elif nxt[r, c] == 1 and num_alive < 2 or num_alive > 3:
+        elif nxt[r, c] == 1 and (num_alive < 2 or num_alive > 3):
             col = col_about_to_die
         # col = col if cells[r, c] == 1 or col == col_neighbor else col_background
         pygame.draw.rect(surface, col, (c*cellsize, r*cellsize, cellsize-1, cellsize-1)) #更新方格顏色
