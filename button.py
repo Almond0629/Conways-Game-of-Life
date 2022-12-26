@@ -2,7 +2,7 @@ import pygame
 from constant import *
 
 class Button:
-    def __init__(self, x, y, content: str, fontsize):
+    def __init__(self, x, y, content: str, fontsize, color=col_background):
         font = pygame.font.Font('8-BIT_WONDER.TTF', fontsize)
         self.text_surface = font.render(content, True, (255, 255, 255))
         self.text_rect = self.text_surface.get_rect()
@@ -12,7 +12,7 @@ class Button:
         self.y = y
         self.display = pygame.Surface((self.w, self.h))
         self.rect = pygame.Rect(self.x, self.y, self.w, self.h)
-        self.display.fill(col_background)
+        self.display.fill(color)
         self.display.blit(self.text_surface, (self.rect.width/2 - self.text_rect.width/2, self.rect.height/2 - self.text_rect.height/2))
 
     
