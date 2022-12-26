@@ -28,6 +28,7 @@ class MainMenu(Menu): # class for the main menu
         self.title2 = Button(self.x, self.y - 100, "Game of Life", self.title_fontsize)
         self.start_button = Button(self.x, self.y + 50, 'Start', self.fontsize)
         self.settings_button = Button(self.x, self.y + 130, 'Settings', self.fontsize)
+        self.quit_button = Button(self.x, self.y + 210, 'Quit', self.fontsize)
 
     def display_menu(self): # displaying the menu
         self.run_display = True
@@ -42,10 +43,14 @@ class MainMenu(Menu): # class for the main menu
                     if self.start_button.on(mouse_pos):
                         print("Running the game...")
                         self.run_display = False
+                    elif self.quit_button.on(mouse_pos):
+                        print("Quitting the game")
+                        self.run_code = False
             self.title1.draw(self.display)
             self.title2.draw(self.display)
             self.start_button.draw(self.display)
             self.settings_button.draw(self.display)
+            self.quit_button.draw(self.display)
             self.blit_screen()
 class Settings(Menu):
     def __init__(self, display, surface, dimx, dimy, cellsize, color):
