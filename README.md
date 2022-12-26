@@ -7,7 +7,7 @@
   - [x] title
   - [x] start button
   - [x] settings button
-  - [ ] quit button
+  - [x] quit button
 
 - ### settings
 
@@ -20,12 +20,13 @@
 - ### run
 
   - [x] click to kill / revive cells
-  - [ ] start / stop button
+  - [x] start / stop button
   - [ ] highlight repeating patterns?
-  - [ ] reset
+  - [x] reset
   - [ ] zoom in / out (not necessary)
-  - [ ] main menu button
-
+  - [x] main menu button
+  - [x] settings button
+  
 ## Algorithm
 
 - ### spliting
