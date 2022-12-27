@@ -33,6 +33,8 @@ class MainMenu(Menu): # class for the main menu
     def display_menu(self): # displaying the menu
         self.run_display = True
         self.run_code = True
+        self.goto_setting = False
+        self.goto_running = False
         while self.run_display and self.run_code:
             self.display.fill(self.color)
             for event in pygame.event.get():
@@ -42,12 +44,14 @@ class MainMenu(Menu): # class for the main menu
                     mouse_pos = pygame.mouse.get_pos()
                     if self.start_button.on(mouse_pos):
                         print("Running the game...")
+                        self.goto_running = True
                         self.run_display = False
                     elif self.quit_button.on(mouse_pos):
                         print("Quitting the game")
                         self.run_code = False
                     elif self.settings_button.on(mouse_pos):
                         print('Go to the game settings')
+                        self.goto_setting = True
                         self.run_display = False
             self.title1.draw(self.display)
             self.title2.draw(self.display)
@@ -65,7 +69,6 @@ class Settings(Menu):
         self.max_num_alive_setbutton = Button(self.x, self.y-100, 'Minimum limotation to live', self.fontsize)
         self.num_repro_setbutton = Button(self.x, self.y, 'Reproduce condition', self.fontsize)
         self.goto_menu_button = Button(self.x+200, self.y+200, 'Goto menu', self.fontsize)
-        #TODO
     
     def display_menu(self): # displaying the menu
         self.run_display = True
@@ -80,6 +83,9 @@ class Settings(Menu):
                     mouse_pos = pygame.mouse.get_pos()
                     if self.goto_menu_button.on(mouse_pos):
                         self.goto_menu = True
-            #這裡要有跳到menu的按鈕把self.goto_menu設成True
-            pass
-        #TODO
+            self.max_num_alive_setbutton.draw(self.display)
+            self.max_num_alive_setbutton.draw(self.display)
+            self.num_repro_setbutton.draw(self.display)
+            self.goto_menu_button.draw(self.display)
+            self.blit_screen()
+    
