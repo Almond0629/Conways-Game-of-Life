@@ -1,5 +1,6 @@
 import pygame
-from constant import * #引入顏色、幀率
+import constant
+from constant import col_background, col_grid #引入顏色、幀率
 import init #初始化
 import modify #修改
 import update #包含更新跟畫上格子
@@ -16,13 +17,13 @@ def main(dimx, dimy, cellsize):
     running = True #暫停狀態，預設1=運行
     status = "main" #status: main(menu), run, settings，預設為起始畫面
     current_menu = MainMenu(display, surface, dimx, dimy, cellsize, col_background)
-    start_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 170, 'Start', 30, col_grid)
-    stop_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 70, 'Stop', 30, col_grid)
-    reset_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 30, 'Reset', 30, col_grid)
-    settings_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 130, 'Settings', 30, col_grid)
-    menu_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 230, 'Menu', 30, col_grid)
-    title1 = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 270, 'Conway s', 20, col_grid)
-    title2 = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 240, 'Game of Life', 20, col_grid)
+    start_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 170, 'Start', 50, col_grid)
+    stop_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 70, 'Stop', 50, col_grid)
+    reset_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 30, 'Reset', 50, col_grid)
+    settings_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 130, 'Settings', 50, col_grid)
+    menu_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 230, 'Menu', 50, col_grid)
+    title1 = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 270, 'Conway\'s', 40, col_grid)
+    title2 = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 240, 'Game of Life', 40, col_grid)
     
     
     while True:
@@ -30,13 +31,6 @@ def main(dimx, dimy, cellsize):
             if current_menu.run_display and current_menu.run_code:
                 current_menu.display_menu()
                 pygame.display.update()
-                # elif event.type == pygame.MOUSEBUTTONDOWN:
-                #     mouse_pos = pygame.mouse.get_pos()
-                #     if start_button.on(mouse_pos):
-                #         print("Running the game...")
-                #         status = "run"
-                #         current_menu.run_display = False
-                    # elif settings_button.on(mouse_pos):
             if not current_menu.run_code:
                 pygame.quit()
                 return 0
@@ -52,6 +46,8 @@ def main(dimx, dimy, cellsize):
             if current_settings.goto_menu:
                 status = "main"
                 current_menu = MainMenu(display, surface, dimx, dimy, cellsize, col_background)
+            if current_settings.goto_run:
+                status = "run"
             if not current_settings.run_code:
                 pygame.quit()
                 return 0
@@ -82,7 +78,7 @@ def main(dimx, dimy, cellsize):
                     if menu_button.on(mouse_pos):
                         status = "main"
                         current_menu = MainMenu(display, surface, dimx, dimy, cellsize, col_background)
-            clock.tick(FPS) #固定幀率
+            clock.tick(constant.FPS) #固定幀率
             surface.fill(col_grid)
             # running_menu.display_menu()
             update.draw(surface, cells, dimx, dimy, cellsize)
