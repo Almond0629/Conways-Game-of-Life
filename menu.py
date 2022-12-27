@@ -98,19 +98,19 @@ class Settings(Menu):
                         self.goto_menu = True
                     if self.goto_run_button.on(mouse_pos):
                         self.goto_run = True
-                    if self.max_up.on(mouse_pos):
+                    if self.max_up.on(mouse_pos) and constant.max_num_alive < 8:
                         constant.max_num_alive += 1
                         self.max_num_alive_setbutton.update(f'Maximum limitation to live: {constant.max_num_alive}')
                     if self.max_down.on(mouse_pos) and constant.max_num_alive > 0:
                         constant.max_num_alive -= 1
                         self.max_num_alive_setbutton.update(f'Maximum limitation to live: {constant.max_num_alive}')
-                    if self.min_up.on(mouse_pos):
+                    if self.min_up.on(mouse_pos) and constant.min_num_alive < 8:
                         constant.min_num_alive += 1
                         self.min_num_alive_setbutton.update(f'Minimum limitaion to live: {constant.min_num_alive}')
-                    if self.min_down.on(mouse_pos):
-                        constant.min_num_alive -= 1 and constant.min_num_alive > 0
+                    if self.min_down.on(mouse_pos) and constant.min_num_alive > 0:
+                        constant.min_num_alive -= 1
                         self.min_num_alive_setbutton.update(f'Minimum limitaion to live: {constant.min_num_alive}')
-                    if self.rep_up.on(mouse_pos):
+                    if self.rep_up.on(mouse_pos) and constant.num_repro < 8:
                         constant.num_repro += 1
                         self.num_repro_setbutton.update(f'Reproduce condition: {constant.num_repro}')
                     if self.rep_down.on(mouse_pos) and constant.num_repro > 0:
