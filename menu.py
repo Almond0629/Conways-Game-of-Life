@@ -65,8 +65,8 @@ class Settings(Menu):
         self.x = self.w/2
         self.y = self.h/2
         self.fontsize = 30
-        self.max_num_alive_setbutton = Button(self.x, self.y-200, 'Maximum limitaion to live', self.fontsize)
-        self.max_num_alive_setbutton = Button(self.x, self.y-100, 'Minimum limotation to live', self.fontsize)
+        self.max_num_alive_setbutton = Button(self.x, self.y-200, 'Maximum limitation to live', self.fontsize)
+        self.min_num_alive_setbutton = Button(self.x, self.y-100, 'Minimum limitation to live', self.fontsize)
         self.num_repro_setbutton = Button(self.x, self.y, 'Reproduce condition', self.fontsize)
         self.goto_menu_button = Button(self.x+200, self.y+200, 'Goto menu', self.fontsize)
     
@@ -84,7 +84,7 @@ class Settings(Menu):
                     if self.goto_menu_button.on(mouse_pos):
                         self.goto_menu = True
             self.max_num_alive_setbutton.draw(self.display)
-            self.max_num_alive_setbutton.draw(self.display)
+            self.min_num_alive_setbutton.draw(self.display)
             self.num_repro_setbutton.draw(self.display)
             self.goto_menu_button.draw(self.display)
             self.blit_screen()
