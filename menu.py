@@ -62,6 +62,7 @@ class MainMenu(Menu): # class for the main menu
 class Settings(Menu):
     def __init__(self, display, surface, dimx, dimy, cellsize, color):
         Menu.__init__(self, display, surface, dimx, dimy, cellsize, color)
+
         self.x = self.w / 2
         self.y = self.h / 2
         self.fontsize = 60
