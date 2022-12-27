@@ -46,6 +46,9 @@ class MainMenu(Menu): # class for the main menu
                     elif self.quit_button.on(mouse_pos):
                         print("Quitting the game")
                         self.run_code = False
+                    elif self.settings_button.on(mouse_pos):
+                        print('Go to the game settings')
+                        self.run_display = False
             self.title1.draw(self.display)
             self.title2.draw(self.display)
             self.start_button.draw(self.display)
@@ -55,6 +58,13 @@ class MainMenu(Menu): # class for the main menu
 class Settings(Menu):
     def __init__(self, display, surface, dimx, dimy, cellsize, color):
         Menu.__init__(self, display, surface, dimx, dimy, cellsize, color)
+        self.x = self.w/2
+        self.y = self.h/2
+        self.fontsize = 30
+        self.max_num_alive_setbutton = Button(self.x, self.y-200, 'Maximum limitaion to live', self.fontsize)
+        self.max_num_alive_setbutton = Button(self.x, self.y-100, 'Minimum limotation to live', self.fontsize)
+        self.num_repro_setbutton = Button(self.x, self.y, 'Reproduce condition', self.fontsize)
+        self.goto_menu_button = Button(self.x+200, self.y+200, 'Goto menu', self.fontsize)
         #TODO
     
     def display_menu(self): # displaying the menu
@@ -62,6 +72,14 @@ class Settings(Menu):
         self.goto_menu = False
         self.run_code = True
         while self.run_display and self.run_code and not self.goto_menu:
+            self.display.fill(self.color)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.run_code = False
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_pos = pygame.mouse.get_pos()
+                    if self.goto_menu_button.on(mouse_pos):
+                        self.goto_menu = True
             #這裡要有跳到menu的按鈕把self.goto_menu設成True
             pass
         #TODO
