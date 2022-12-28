@@ -11,11 +11,11 @@
 
 - ### settings
 
-  - [ ] modify framerate `FPS`
-  - [ ] modify least living neighbor cells `min_num_alive`
-  - [ ] modify most living neighbor cells `max_num_alive`
-  - [ ] modify neighbor cells number required to reproduce `num_repro`
-  - [ ] main menu button
+  - [x] modify framerate `FPS`
+  - [x] modify least living neighbor cells `min_num_alive`
+  - [x] modify most living neighbor cells `max_num_alive`
+  - [x] modify neighbor cells number required to reproduce `num_repro`
+  - [x] main menu button
 
 - ### run
 

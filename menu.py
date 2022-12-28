@@ -26,9 +26,9 @@ class MainMenu(Menu): # class for the main menu
         self.fontsize = 70
         self.title1 = Button(self.x, self.y - 200, "Conway\'s", self.title_fontsize)
         self.title2 = Button(self.x, self.y - 100, "Game of Life", self.title_fontsize)
-        self.start_button = Button(self.x, self.y + 50, 'Start', self.fontsize)
-        self.settings_button = Button(self.x, self.y + 130, 'Settings', self.fontsize)
-        self.quit_button = Button(self.x, self.y + 210, 'Quit', self.fontsize)
+        self.start_button = Button(self.x, self.y + 50, 'Start', self.fontsize,large=True)
+        self.settings_button = Button(self.x, self.y + 130, 'Settings', self.fontsize,large=True)
+        self.quit_button = Button(self.x, self.y + 210, 'Quit', self.fontsize,large=True)
 
     def display_menu(self): # displaying the menu
         self.run_display = True
@@ -66,21 +66,21 @@ class Settings(Menu):
         self.x = self.w / 2
         self.y = self.h / 2
         self.fontsize = 60
-        self.min_num_alive_setbutton = Button(self.x, self.y-150, f'Minimum limitaion to live: {constant.min_num_alive}', self.fontsize, align_left=True)
-        self.max_num_alive_setbutton = Button(self.x, self.y-75, f'Maximum limitation to live: {constant.max_num_alive}', self.fontsize, align_left=True)
-        self.num_repro_setbutton = Button(self.x, self.y, f'Reproduce condition: {constant.num_repro}', self.fontsize, align_left=True)
-        self.framerate_setbutton = Button(self.x, self.y+75, f'frame per second: {constant.FPS}', self.fontsize, align_left=True)
-        self.goto_menu_button = Button(self.x+200, self.y+200, 'Go to menu', self.fontsize)
-        self.goto_run_button = Button(self.x-200, self.y+200, 'Start', self.fontsize)
+        self.min_num_alive_setbutton = Button(self.x, self.y-150, f'Minimum limitaion to live: {constant.min_num_alive}', self.fontsize, align_left=True,large=True)
+        self.max_num_alive_setbutton = Button(self.x, self.y-75, f'Maximum limitation to live: {constant.max_num_alive}', self.fontsize, align_left=True,large=True)
+        self.num_repro_setbutton = Button(self.x, self.y, f'Reproduce condition: {constant.num_repro}', self.fontsize, align_left=True,large=True)
+        self.framerate_setbutton = Button(self.x, self.y+75, f'frame per second: {constant.FPS}', self.fontsize, align_left=True,large=True)
+        self.goto_menu_button = Button(self.x+200, self.y+200, 'Go to menu', self.fontsize,large=True)
+        self.goto_run_button = Button(self.x-200, self.y+200, 'Start', self.fontsize,large=True)
         self.title = Button(self.x, self.y-250, 'Settings', self.fontsize+10)
-        self.max_up = Button(self.x+350, self.y-75, '+', self.fontsize)
-        self.max_down = Button(self.x+400, self.y-75, '-', self.fontsize)
-        self.min_up = Button(self.x+350, self.y-150, '+', self.fontsize)
-        self.min_down = Button(self.x+400, self.y-150, '-', self.fontsize)
-        self.rep_up = Button(self.x+350, self.y, '+', self.fontsize)
-        self.rep_down = Button(self.x+400, self.y, '-', self.fontsize)
-        self.fps_up = Button(self.x+350, self.y+75, '+', self.fontsize)
-        self.fps_down = Button(self.x+400, self.y+75, '-', self.fontsize)
+        self.max_up = Button(self.x+350, self.y-75, '+', self.fontsize,large=True)
+        self.max_down = Button(self.x+400, self.y-75, '-', self.fontsize,large=True)
+        self.min_up = Button(self.x+350, self.y-150, '+', self.fontsize,large=True)
+        self.min_down = Button(self.x+400, self.y-150, '-', self.fontsize,large=True)
+        self.rep_up = Button(self.x+350, self.y, '+', self.fontsize,large=True)
+        self.rep_down = Button(self.x+400, self.y, '-', self.fontsize,large=True)
+        self.fps_up = Button(self.x+350, self.y+75, '+', self.fontsize,large=True)
+        self.fps_down = Button(self.x+400, self.y+75, '-', self.fontsize,large=True)
     
     def display_menu(self): # displaying the menu
         self.run_display = True
@@ -101,10 +101,10 @@ class Settings(Menu):
                     if self.max_up.on(mouse_pos) and constant.max_num_alive < 8:
                         constant.max_num_alive += 1
                         self.max_num_alive_setbutton.update(f'Maximum limitation to live: {constant.max_num_alive}')
-                    if self.max_down.on(mouse_pos) and constant.max_num_alive > 0:
+                    if self.max_down.on(mouse_pos) and constant.max_num_alive > constant.min_num_alive:
                         constant.max_num_alive -= 1
                         self.max_num_alive_setbutton.update(f'Maximum limitation to live: {constant.max_num_alive}')
-                    if self.min_up.on(mouse_pos) and constant.min_num_alive < 8:
+                    if self.min_up.on(mouse_pos) and constant.min_num_alive < constant.max_num_alive:
                         constant.min_num_alive += 1
                         self.min_num_alive_setbutton.update(f'Minimum limitaion to live: {constant.min_num_alive}')
                     if self.min_down.on(mouse_pos) and constant.min_num_alive > 0:
