@@ -53,7 +53,7 @@ def main(dimx, dimy, cellsize):
                 return 0
         elif status == "run":
             for event in pygame.event.get():
-                print(event.type)
+                # print(event.type)
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     return 0
@@ -78,7 +78,6 @@ def main(dimx, dimy, cellsize):
                     if menu_button.on(mouse_pos):
                         status = "main"
                         current_menu = MainMenu(display, surface, dimx, dimy, cellsize, col_background)
-            clock.tick(constant.FPS) #固定幀率
             surface.fill(col_grid)
             # running_menu.display_menu()
             update.draw(surface, cells, dimx, dimy, cellsize)
@@ -93,6 +92,10 @@ def main(dimx, dimy, cellsize):
                 cells = update.update(surface, cells, dimx, dimy, cellsize, running) #如果沒有暫停的話就修改
             # pygame.draw.rect(surface, col_background, (1*cellsize, dimy * cellsize + 1*cellsize, 2*cellsize, 1.5*cellsize))
             pygame.display.update()
+            if constant.FPS > 0:
+                clock.tick(constant.FPS) #固定幀率
+            else:
+                running = False
 
 if __name__ == '__main__':
     main(96, 60, 10)
