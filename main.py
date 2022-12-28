@@ -17,11 +17,11 @@ def main(dimx, dimy, cellsize):
     running = True #暫停狀態，預設1=運行
     status = "main" #status: main(menu), run, settings，預設為起始畫面
     current_menu = MainMenu(display, surface, dimx, dimy, cellsize, col_background)
-    start_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 170, 'Start', 50, col_grid)
-    stop_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 70, 'Stop', 50, col_grid)
-    reset_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 30, 'Reset', 50, col_grid)
-    settings_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 130, 'Settings', 50, col_grid)
-    menu_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 230, 'Menu', 50, col_grid)
+    start_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 170, 'Start', 50, col_grid,large=True)
+    stop_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 70, 'Stop', 50, col_grid,large=True)
+    reset_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 30, 'Reset', 50, col_grid,large=True)
+    settings_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 130, 'Settings', 50, col_grid,large=True)
+    menu_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 230, 'Menu', 50, col_grid,large=True)
     title1 = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 270, 'Conway\'s', 40, col_grid)
     title2 = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 240, 'Game of Life', 40, col_grid)
     
@@ -53,7 +53,7 @@ def main(dimx, dimy, cellsize):
                 return 0
         elif status == "run":
             for event in pygame.event.get():
-                # print(event.type)
+                print(event.type)
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     return 0
