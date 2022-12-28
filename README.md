@@ -21,9 +21,7 @@
 
   - [x] click to kill / revive cells
   - [x] start / stop button
-  - [ ] highlight repeating patterns?
   - [x] reset
-  - [ ] zoom in / out (not necessary)
   - [x] main menu button
   - [x] settings button
   
