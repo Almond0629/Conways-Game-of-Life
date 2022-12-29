@@ -66,7 +66,7 @@ class Settings(Menu):
         self.x = self.w / 2
         self.y = self.h / 2
         self.fontsize = 60
-        self.min_num_alive_setbutton = Button(self.x, self.y-150, f'Minimum limitaion to live: {constant.min_num_alive}', self.fontsize, align_left=True,large=True)
+        self.min_num_alive_setbutton = Button(self.x, self.y-150, f'Minimum limitation to live: {constant.min_num_alive}', self.fontsize, align_left=True,large=True)
         self.max_num_alive_setbutton = Button(self.x, self.y-75, f'Maximum limitation to live: {constant.max_num_alive}', self.fontsize, align_left=True,large=True)
         self.num_repro_setbutton = Button(self.x, self.y, f'Reproduce condition: {constant.num_repro}', self.fontsize, align_left=True,large=True)
         self.framerate_setbutton = Button(self.x, self.y+75, f'frame per second: {constant.FPS}', self.fontsize, align_left=True,large=True)
