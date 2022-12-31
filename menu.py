@@ -106,10 +106,10 @@ class Settings(Menu):
                         self.max_num_alive_setbutton.update(f'Maximum limitation to live: {constant.max_num_alive}')
                     if self.min_up.on(mouse_pos) and constant.min_num_alive < constant.max_num_alive:
                         constant.min_num_alive += 1
-                        self.min_num_alive_setbutton.update(f'Minimum limitaion to live: {constant.min_num_alive}')
+                        self.min_num_alive_setbutton.update(f'Minimum limitation to live: {constant.min_num_alive}')
                     if self.min_down.on(mouse_pos) and constant.min_num_alive > 0:
                         constant.min_num_alive -= 1
-                        self.min_num_alive_setbutton.update(f'Minimum limitaion to live: {constant.min_num_alive}')
+                        self.min_num_alive_setbutton.update(f'Minimum limitation to live: {constant.min_num_alive}')
                     if self.rep_up.on(mouse_pos) and constant.num_repro < 8:
                         constant.num_repro += 1
                         self.num_repro_setbutton.update(f'Reproduce condition: {constant.num_repro}')
