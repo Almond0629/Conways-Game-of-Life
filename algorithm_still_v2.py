@@ -29,10 +29,11 @@ for i in range(1, 2 ** 36):
         nstrcell = strcell.strip("0")
         if nstrcell not in database:
             arr = np.array(list(nstrcell + "0" * (36 - len(nstrcell)))).reshape((6, 6))
-            output.append(np.array(list(strcell + "0" * (36 - len(strcell)))).reshape((6, 6)))
+            oarr = np.array(list(strcell + "0" * (36 - len(strcell)))).reshape((6, 6))
+            output.append(oarr)
             column, row = divmod(count, 6) #顯示用
             column %= 10 #顯示用
-            display_arr[2+8*row:8+8*row, 2+8*column:8+8*column] = arr #顯示用
+            display_arr[2+8*row:8+8*row, 2+8*column:8+8*column] = oarr #顯示用
             surface.fill(col_grid) #顯示用
             draw(surface, display_arr, dimx, dimy, cellsize, True) #顯示用
             pygame.display.update() #顯示用
