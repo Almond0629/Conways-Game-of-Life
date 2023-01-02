@@ -6,6 +6,7 @@ with open("still_output_5.txt", "w") as file:
     file.write("Still cells\nInput cell size = 6 * 6\n")
 database = set()
 progress = tqdm(total = 2 ** 36 - 1)
+output = []
 
 for i in range(1, 2 ** 36):
     progress.update(1)
@@ -18,7 +19,10 @@ for i in range(1, 2 ** 36):
         nstrcell = strcell.strip("0")
         if nstrcell not in database:
             arr = np.array(list(nstrcell + "0" * (36 - len(nstrcell)))).reshape((6, 6))
+            output.append(arr)
+            draw(output)
             for array in (arr, arr.T, arr[::-1], arr[::-1].T, arr.T[::-1], arr.T[::-1].T, arr[::-1].T[::-1], arr[::-1].T[::-1].T):
                 database.add("".join(array.astype(str).flatten()).strip("0").rstrip("0"))
-            with open("still_output_5.txt", "a") as file:
-                file.write("\n".join(i for i in wrap(strcell, 6) if i != "000000" and len(i) == 6) + "\n\n")
+            # with open("still_output_5.txt", "a") as file:
+            #     file.write("\n".join(i for i in wrap(strcell, 6) if i != "000000" and len(i) == 6) + "\n\n")
+
