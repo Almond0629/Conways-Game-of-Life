@@ -27,6 +27,13 @@
   
 ## Algorithm
 
-- ### spliting
+- ### using numpy array
 
-- ### detecting repeating pattern
+  - [x] split cells into blocks (for large cells)
+  - [x] run blocks and save data
+  - [x] return special cases
+
+- ### using built-in strings
+
+  - [x] modify string and add to database
+  - [x] use GUI to print out special cases
