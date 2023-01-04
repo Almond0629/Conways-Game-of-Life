@@ -45,4 +45,4 @@ for i in range(1, 2 ** 36):
     for event in pygame.event.get(): #顯示用
         if event.type == pygame.QUIT: #顯示用
             pygame.quit() #顯示用
-
+#hello world
