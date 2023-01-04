@@ -17,7 +17,7 @@ def main(dimx, dimy, cellsize):
     running = True #暫停狀態，預設1=運行
     status = "main" #status: main(menu), run, settings，預設為起始畫面
     current_menu = MainMenu(display, surface, dimx, dimy, cellsize, col_background)
-    start_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 170, 'Start', 50, col_grid,large=True)
+    start_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 170, 'Start/Stop', 50, col_grid,large=True)
     stop_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 70, 'Stop', 50, col_grid,large=True)
     reset_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 30, 'Reset', 50, col_grid,large=True)
     settings_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 130, 'Settings', 50, col_grid,large=True)
@@ -68,7 +68,7 @@ def main(dimx, dimy, cellsize):
                     if modify.mouse_on_grid(mouse_pos, dimx, dimy, cellsize):
                         modify.modify(mouse_pos, cells, cellsize)
                     if start_button.on(mouse_pos):
-                        running = True
+                        running = False if running else True
                     if stop_button.on(mouse_pos):
                         running = False
                     if reset_button.on(mouse_pos):
