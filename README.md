@@ -8,6 +8,7 @@
   - [x] start button
   - [x] settings button
   - [x] quit button
+  - [x] rickroll BGM
 
 - ### settings
 
@@ -24,6 +25,7 @@
   - [x] reset
   - [x] main menu button
   - [x] settings button
+  - [x] adding patterns imported from database (change patterns by modifying `modify_number`
   
 ## Algorithm
 
