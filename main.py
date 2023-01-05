@@ -25,13 +25,14 @@ def main(dimx, dimy, cellsize):
     
     title1 = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 270, 'Conway\'s', 40, col_grid)
     title2 = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 240, 'Game of Life', 40, col_grid)
-    start_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 170, 'Start/Stop', 50, col_grid,large=True)
-    edit_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 70, 'Editing mode', 35, col_grid)
-    modify_down = Button(cellsize * (dimx - 13 - 8), cellsize * dimy / 2 - 30, '-', 70, col_grid,large=True)
-    default_text = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 5, 'default', 30, col_grid)
-    modify_up = Button(cellsize * (dimx - 13 + 8), cellsize * dimy / 2 - 30, '+', 70, col_grid,large=True)
-    reset_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 70, 'Reset', 50, col_grid,large=True)
-    settings_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 150, 'Settings', 50, col_grid,large=True)
+    start_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 190, 'Start/Stop', 50, col_grid,large=True)
+    edit_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 90, 'Editing mode', 35, col_grid)
+    modify_down = Button(cellsize * (dimx - 13 - 8), cellsize * dimy / 2 - 50, '-', 70, col_grid,large=True)
+    default_text = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 25, 'default', 30, col_grid)
+    modify_up = Button(cellsize * (dimx - 13 + 8), cellsize * dimy / 2 - 50, '+', 70, col_grid,large=True)
+    clear_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 20, 'Clear', 50, col_grid,large=True)
+    reset_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 90, 'Reset', 50, col_grid,large=True)
+    settings_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 160, 'Settings', 50, col_grid,large=True)
     menu_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 230, 'Menu', 50, col_grid,large=True)
     
     
@@ -91,6 +92,8 @@ def main(dimx, dimy, cellsize):
                             constant.modify_number -= 1
                         else:
                             constant.modify_number = len(database)-1
+                    if clear_button.on(mouse_pos):
+                        cells.fill(0)
                     if reset_button.on(mouse_pos):
                         cells = init(dimx, dimy)
                     if settings_button.on(mouse_pos):
@@ -107,13 +110,14 @@ def main(dimx, dimy, cellsize):
             edit_button.draw(surface)
             modify_up.draw(surface)
             modify_down.draw(surface)
+            clear_button.draw(surface)
             reset_button.draw(surface)
             settings_button.draw(surface)
             menu_button.draw(surface)
             if constant.modify_number < 0:
                 default_text.draw(surface)
             else:
-                modify.draw_example(surface, constant.modify_number, cellsize * (dimx - 13), cellsize * dimy / 2 , cellsize)
+                modify.draw_example(surface, constant.modify_number, cellsize * (dimx - 13), cellsize * dimy / 2 -20, cellsize)
             if running: 
                 cells = update.update(surface, cells, dimx, dimy, cellsize, running) #如果沒有暫停的話就修改
             # pygame.draw.rect(surface, col_background, (1*cellsize, dimy * cellsize + 1*cellsize, 2*cellsize, 1.5*cellsize))
