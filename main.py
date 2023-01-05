@@ -1,29 +1,35 @@
 import pygame
 import constant
 from constant import col_background, col_grid #引入顏色、幀率
-import init #初始化
+from init import init #初始化
 import modify #修改
 import update #包含更新跟畫上格子
 from menu import MainMenu, Settings
 from button import Button
+from output import database
 
 def main(dimx, dimy, cellsize):
     pygame.init()
     display = pygame.Surface((dimx * cellsize, dimy * cellsize))
     surface = pygame.display.set_mode((dimx * cellsize, dimy * cellsize))
     pygame.display.set_caption("Game of Life")
-    cells = init.init(dimx, dimy)
+    cells = init(dimx, dimy)
     clock = pygame.time.Clock()
     running = True #暫停狀態，預設1=運行
     status = "main" #status: main(menu), run, settings，預設為起始畫面
     current_menu = MainMenu(display, surface, dimx, dimy, cellsize, col_background)
-    start_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 170, 'Start/Stop', 50, col_grid,large=True)
-    stop_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 70, 'Stop', 50, col_grid,large=True)
-    reset_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 30, 'Reset', 50, col_grid,large=True)
-    settings_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 130, 'Settings', 50, col_grid,large=True)
-    menu_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 230, 'Menu', 50, col_grid,large=True)
+    
     title1 = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 270, 'Conway\'s', 40, col_grid)
     title2 = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 240, 'Game of Life', 40, col_grid)
+    start_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 170, 'Start/Stop', 50, col_grid,large=True)
+    edit_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 70, 'Editing mode', 35, col_grid)
+    modify_down = Button(cellsize * (dimx - 13 - 8), cellsize * dimy / 2 - 30, '-', 70, col_grid,large=True)
+    default_text = Button(cellsize * (dimx - 13), cellsize * dimy / 2 - 5, 'default', 30, col_grid)
+    modify_up = Button(cellsize * (dimx - 13 + 8), cellsize * dimy / 2 - 30, '+', 70, col_grid,large=True)
+    reset_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 70, 'Reset', 50, col_grid,large=True)
+    settings_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 150, 'Settings', 50, col_grid,large=True)
+    menu_button = Button(cellsize * (dimx - 13), cellsize * dimy / 2 + 230, 'Menu', 50, col_grid,large=True)
+    
     
     
     while True:
@@ -66,13 +72,23 @@ def main(dimx, dimy, cellsize):
                 if event.type == pygame.MOUSEBUTTONDOWN: #點擊方格修改
                     mouse_pos = pygame.mouse.get_pos()
                     if modify.mouse_on_grid(mouse_pos, dimx, dimy, cellsize):
-                        modify.modify(mouse_pos, cells, cellsize)
+                        modify.modify(mouse_pos, cells, cellsize, dimx, dimy)
                     if start_button.on(mouse_pos):
                         running = False if running else True
-                    if stop_button.on(mouse_pos):
-                        running = False
+                    # if edit_button.on(mouse_pos):
+                    #     running = False
+                    if modify_up.on(mouse_pos):
+                        if constant.modify_number < len(database)-1:
+                            constant.modify_number += 1
+                        else:
+                            constant.modify_number = -1
+                    if modify_down.on(mouse_pos):
+                        if constant.modify_number > -1:
+                            constant.modify_number -= 1
+                        else:
+                            constant.modify_number = len(database)-1
                     if reset_button.on(mouse_pos):
-                        cells.fill(0)
+                        cells = init(dimx, dimy)
                     if settings_button.on(mouse_pos):
                         status = "settings"
                     if menu_button.on(mouse_pos):
@@ -81,13 +97,19 @@ def main(dimx, dimy, cellsize):
             surface.fill(col_grid)
             # running_menu.display_menu()
             update.draw(surface, cells, dimx, dimy, cellsize)
+            title1.draw(surface)
+            title2.draw(surface)
             start_button.draw(surface)
-            stop_button.draw(surface)
+            edit_button.draw(surface)
+            modify_up.draw(surface)
+            modify_down.draw(surface)
             reset_button.draw(surface)
             settings_button.draw(surface)
             menu_button.draw(surface)
-            title1.draw(surface)
-            title2.draw(surface)
+            if constant.modify_number < 0:
+                default_text.draw(surface)
+            else:
+                modify.draw_example(surface, constant.modify_number, cellsize * (dimx - 13), cellsize * dimy / 2 , cellsize)
             if running: 
                 cells = update.update(surface, cells, dimx, dimy, cellsize, running) #如果沒有暫停的話就修改
             # pygame.draw.rect(surface, col_background, (1*cellsize, dimy * cellsize + 1*cellsize, 2*cellsize, 1.5*cellsize))

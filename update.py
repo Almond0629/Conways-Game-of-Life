@@ -5,7 +5,7 @@ import numpy as np
 這邊把更新跟畫格子拆開了，這樣比較好修改
 '''
 def update(surface, cells, dimx, dimy, cellsize, running): # cells: current status, cellsize: square size
-    nxt = np.zeros((cells.shape[0], cells.shape[1]))
+    nxt = np.zeros((cells.shape[0], cells.shape[1]), int)
     if running:
         for r, c in np.ndindex(cells.shape):
             num_alive = np.sum(cells[r-1:r+2, c-1:c+2]) - cells[r, c] # 周圍還活著的

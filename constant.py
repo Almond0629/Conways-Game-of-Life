@@ -9,3 +9,4 @@ max_num_alive = 3 #活細胞相鄰存活數大於這個數字會死
 min_num_alive = 2 #活細胞相鄰存活數小於這個數字會死
 num_repro = 3 #死細胞相鄰存活數＝這個數字則復活
 FPS = 6 #幀率
+modify_number = -1
