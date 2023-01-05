@@ -10,6 +10,10 @@ from output import database
 
 def main(dimx, dimy, cellsize):
     pygame.init()
+    pygame.mixer.init()
+    pygame.mixer.music.load('8-bit-universe.mp3')
+    pygame.mixer.music.set_volume(0.2)
+    pygame.mixer.music.play(-1)
     display = pygame.Surface((dimx * cellsize, dimy * cellsize))
     surface = pygame.display.set_mode((dimx * cellsize, dimy * cellsize))
     pygame.display.set_caption("Game of Life")

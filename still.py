@@ -10,7 +10,7 @@ constant.max_num_alive = 3
 constant.min_num_alive = 2
 constant.num_repro = 3
 database = set()
-size = 4
+size = 6
 maximum = 2 ** 18 #設定最多跑的格子數上限
 progress = tqdm(total = min(maximum, 2**(size**2)-1))
 output = []
