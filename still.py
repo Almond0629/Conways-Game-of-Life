@@ -10,7 +10,7 @@ constant.max_num_alive = 3
 constant.min_num_alive = 2
 constant.num_repro = 3
 database = set()
-size = 6
+size = 4
 maximum = 2 ** 18 #設定最多跑的格子數上限
 progress = tqdm(total = min(maximum, 2**(size**2)-1))
 output = []
@@ -51,7 +51,7 @@ for i in range(1, min(maximum, 2 ** (size ** 2))):
         if event.type == pygame.QUIT: #顯示用
             pygame.quit() #顯示用
 with open("output.py", "a") as file:
-    file.write("]\n#for i in database:\n#   print(i)")
+    file.write("]")
 while True:
     for event in pygame.event.get(): #顯示用
         if event.type == pygame.QUIT: #顯示用
