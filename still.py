@@ -38,7 +38,7 @@ for i in range(1, min(maximum, 2 ** (size ** 2))):
             oarr = np.array(list(strcell[size:] + "0" * (size ** 2)))[:size**2].reshape((size, size))
             column, row = divmod(count, 6) #顯示用
             column %= 10 #顯示用
-            display_arr[2+(size+2)*row:(size+2)+(size+2)*row, 2+(size+2)*column:(size+2)+(size+2)*column] = oarr#np.vstack((oarr[1:], np.array([0] * size).reshape((1, size)))) #顯示用
+            display_arr[2+(size+2)*row:(size+2)+(size+2)*row, 2+(size+2)*column:(size+2)+(size+2)*column] = oarr #顯示用
             surface.fill(col_grid) #顯示用
             draw(surface, display_arr, dimx, dimy, cellsize, True) #顯示用
             pygame.display.update() #顯示用
