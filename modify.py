@@ -14,7 +14,6 @@ def modify(mouse_pos, cells, cellsize, dimx, dimy):
     else:
         size = database[0].shape[0]
         if (dimx - 26 - size) > cell_pos[1] and (dimy - size) > cell_pos[0]:
-            # cells = cells.astype(int)
             cells[cell_pos[0]:cell_pos[0]+size, cell_pos[1]:cell_pos[1]+size] |= database[constant.modify_number]
             print(cells[cell_pos[0]:cell_pos[0]+size, cell_pos[1]:cell_pos[1]+size])
 
