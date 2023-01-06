@@ -64,7 +64,6 @@ def main(dimx, dimy, cellsize):
                 return 0
         elif status == "run":
             for event in pygame.event.get():
-                # print(event.type)
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     return 0
@@ -80,8 +79,6 @@ def main(dimx, dimy, cellsize):
                         modify.modify(mouse_pos, cells, cellsize, dimx, dimy)
                     if start_button.on(mouse_pos):
                         running = False if running else True
-                    # if edit_button.on(mouse_pos):
-                    #     running = False
                     if modify_up.on(mouse_pos):
                         if constant.modify_number < len(database)-1:
                             constant.modify_number += 1
@@ -102,7 +99,6 @@ def main(dimx, dimy, cellsize):
                         status = "main"
                         current_menu = MainMenu(display, surface, dimx, dimy, cellsize, col_background)
             surface.fill(col_grid)
-            # running_menu.display_menu()
             update.draw(surface, cells, dimx, dimy, cellsize)
             title1.draw(surface)
             title2.draw(surface)
@@ -120,7 +116,6 @@ def main(dimx, dimy, cellsize):
                 modify.draw_example(surface, constant.modify_number, cellsize * (dimx - 13), cellsize * dimy / 2 -20, cellsize)
             if running: 
                 cells = update.update(surface, cells, dimx, dimy, cellsize, running) #如果沒有暫停的話就修改
-            # pygame.draw.rect(surface, col_background, (1*cellsize, dimy * cellsize + 1*cellsize, 2*cellsize, 1.5*cellsize))
             pygame.display.update()
             if constant.FPS > 0:
                 clock.tick(constant.FPS) #固定幀率
